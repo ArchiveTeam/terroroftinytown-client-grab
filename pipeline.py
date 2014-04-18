@@ -56,7 +56,8 @@ class UpdateSubmodule(ExternalProcess):
 class RunScraper(ExternalProcess):
     def __init__(self):
         ExternalProcess.__init__(self, 'RunScraper',
-            [sys.executable, 'scraper.py', TRACKER_HOST, VERSION]
+            [sys.executable, 'scraper.py', TRACKER_HOST, VERSION,
+                globals()['downloader'], globals().get('bind_address', '')]
         )
 
 
@@ -73,8 +74,16 @@ project = Project(
     """ % (TRACKER_HOST)
 )
 
-pipeline = Pipeline(
+
+tasks = [
     CheckIP(),
-    UpdateSubmodule(),
     RunScraper()
-)
+]
+
+if globals().get('no_submodule'):
+    print('Not updating submodule')
+else:
+    tasks.insert(0, UpdateSubmodule())
+
+
+pipeline = Pipeline(*tasks)
