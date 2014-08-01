@@ -1,11 +1,13 @@
 from distutils.version import StrictVersion
+import socket
+import sys
+import time
+
 import seesaw
 from seesaw.externalprocess import ExternalProcess
 from seesaw.pipeline import Pipeline
 from seesaw.project import Project
-from seesaw.task import SimpleTask
-import socket
-import sys
+from seesaw.task import SimpleTask, ConditionalTask
 
 
 if StrictVersion(seesaw.__version__) < StrictVersion("0.1.7"):
@@ -23,6 +25,7 @@ class CheckIP(SimpleTask):
 
     def process(self, item):
         if self._counter <= 0:
+            item.log_output('Checking IP address.')
             ip_set = set()
 
             ip_set.add(socket.gethostbyname('twitter.com'))
@@ -44,6 +47,21 @@ class CheckIP(SimpleTask):
             self._counter = 10
         else:
             self._counter -= 1
+
+
+class MaybeUpdateSubmodule(ConditionalTask):
+    def __init__(self):
+        ConditionalTask.__init__(self, self.is_update_needed, UpdateSubmodule())
+        self.last_update = 0
+
+    def is_update_needed(self, item):
+        time_ago = time.time() - 3600
+
+        if self.last_update < time_ago:
+            item.log_output('Submodule updated scheduled.')
+
+            self.last_update = time.time()
+            return True
 
 
 class UpdateSubmodule(ExternalProcess):
@@ -90,7 +108,7 @@ tasks = [
 if globals().get('no_submodule'):
     print('Not updating submodule')
 else:
-    tasks.insert(0, UpdateSubmodule())
+    tasks.insert(0, MaybeUpdateSubmodule())
 
 
 pipeline = Pipeline(*tasks)
