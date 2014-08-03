@@ -1,4 +1,5 @@
 import itertools
+import logging
 import sys
 import time
 
@@ -7,6 +8,8 @@ from terroroftinytown.client.tracker import TrackerClient, TrackerError
 
 
 def main():
+    logging.basicConfig(level=logging.INFO)
+
     tracker_host = sys.argv[1]
     client_version = sys.argv[2]
     username = sys.argv[3]
@@ -22,13 +25,19 @@ def main():
     print('Getting item from tracker.')
     item_info = try_with_tracker(tracker_client.get_item)
 
+    todo_list = range(item_info['lower_sequence_num'],
+                      item_info['upper_sequence_num'] + 1)
+
     scraper_client = Scraper(
-        item_info['shortener_params'], item_info['todo_list']
+        item_info['project'], todo_list
     )
 
     result = scraper_client.run()
 
-    try_with_tracker(tracker_client.upload_item, result)
+    try_with_tracker(tracker_client.upload_item,
+                     item_info['id'],
+                     item_info['tamper_key'],
+                     result)
 
 
 def try_with_tracker(func, *args, **kwargs):
