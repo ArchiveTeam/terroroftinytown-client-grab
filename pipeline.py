@@ -15,7 +15,7 @@ if StrictVersion(seesaw.__version__) < StrictVersion("0.1.7"):
 
 
 VERSION = "2014MMDD.XX"
-TRACKER_HOST = 'TRACKER_HOSTNAME_HERE'
+TRACKER_HOST = 'chfoo-d1.mooo.com:8059'
 
 
 class CheckIP(SimpleTask):
