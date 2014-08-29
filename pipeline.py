@@ -14,7 +14,7 @@ if StrictVersion(seesaw.__version__) < StrictVersion("0.3.1"):
     raise Exception("This pipeline needs seesaw version 0.3.1 or higher.")
 
 
-VERSION = "2014MMDD.XX"
+VERSION = '1'
 TRACKER_HOST = 'chfoo-d1.mooo.com:8059'
 
 
