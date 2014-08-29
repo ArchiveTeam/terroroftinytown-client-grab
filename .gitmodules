@@ -1,3 +1,4 @@
 [submodule "terroroftinytown"]
 	path = terroroftinytown
 	url = https://github.com/ArchiveTeam/terroroftinytown
+	branch = master

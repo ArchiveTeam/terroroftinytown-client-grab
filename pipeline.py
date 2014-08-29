@@ -10,8 +10,8 @@ from seesaw.project import Project
 from seesaw.task import SimpleTask, ConditionalTask
 
 
-if StrictVersion(seesaw.__version__) < StrictVersion("0.1.7"):
-    raise Exception("This pipeline needs seesaw version 0.1.7 or higher.")
+if StrictVersion(seesaw.__version__) < StrictVersion("0.3.1"):
+    raise Exception("This pipeline needs seesaw version 0.3.1 or higher.")
 
 
 VERSION = "2014MMDD.XX"
@@ -65,10 +65,17 @@ class MaybeUpdateSubmodule(ConditionalTask):
 
 
 class UpdateSubmodule(ExternalProcess):
+    NEW_ARGS = ['git', 'submodule', 'update', '--init', '--remote',
+                '--recursive']
+    OLD_ARGS = ['git', 'submodule', 'update', '--init', '--recursive']
+
     def __init__(self):
-        ExternalProcess.__init__(self, 'UpdateSubmoule',
-            ['git', 'submodule', 'update', '--init', '--recursive']
-        )
+        ExternalProcess.__init__(self, 'UpdateSubmoule', self.NEW_ARGS,
+                                 max_tries=2)
+
+    def handle_process_error(self, exit_code, item):
+        self.args = self.OLD_ARGS
+        ExternalProcess.handle_process_error(self, exit_code, item)
 
 
 class RunScraper(ExternalProcess):
