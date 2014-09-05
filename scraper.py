@@ -14,12 +14,14 @@ def main():
     client_version = sys.argv[2]
     username = sys.argv[3]
     bind_address = sys.argv[4]
+    user_agent = sys.argv[5]
 
     tracker_client = TrackerClient(
         tracker_host,
         username,
         version=client_version,
-        bind_address=bind_address
+        bind_address=bind_address,
+        user_agent=user_agent,
     )
 
     print('Getting item from tracker.')

@@ -14,8 +14,18 @@ if StrictVersion(seesaw.__version__) < StrictVersion("0.3.1"):
     raise Exception("This pipeline needs seesaw version 0.3.1 or higher.")
 
 
+# This version covers only pipeline.py and scraper.py.
+# It is known as the pipeline version. Do not confuse it with the
+# version in the library
 VERSION = '1'
 TRACKER_HOST = 'chfoo-d1.mooo.com:8059'
+USER_AGENT = ("ArchiveTeam Warrior/%s (%s %s; pipeline %s)" % (
+              seesaw.__version__,
+              seesaw.runner_type,
+              seesaw.warrior_build,
+              VERSION,
+              )
+              ).strip()
 
 
 class CheckIP(SimpleTask):
@@ -87,7 +97,8 @@ class RunScraper(ExternalProcess):
         ExternalProcess.__init__(self, 'RunScraper',
             [
                 sys.executable, 'scraper.py', TRACKER_HOST, VERSION,
-                globals()['downloader'], globals().get('bind_address', '')
+                globals()['downloader'], globals().get('bind_address', ''),
+                USER_AGENT
             ],
             env=env
         )
