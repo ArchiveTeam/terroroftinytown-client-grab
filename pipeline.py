@@ -18,7 +18,7 @@ if StrictVersion(seesaw.__version__) < StrictVersion("0.3.1"):
 # It is known as the pipeline version. Do not confuse it with the
 # version in the library
 VERSION = '1'
-TRACKER_HOST = 'chfoo-d1.mooo.com:8059'
+TRACKER_HOST = 'tracker.archiveteam.org:1337'
 USER_AGENT = ("ArchiveTeam Warrior/%s (%s %s; pipeline %s)" % (
               seesaw.__version__,
               seesaw.runner_type,
@@ -109,11 +109,11 @@ project = Project(
     project_html="""
     <img class="project-logo" alt=""
         src="http://archiveteam.org/images/9/97/Urlteam-logo.png" height="50"
-    title="" />
+    title="url shortening was a fucking awful idea" />
     <h2><span class="links">
         <a href="http://urlte.am/">Website</a> &middot;
         <a href="http://%s/">Leaderboard</a></span></h2>
-    <p><b>URLTeam</b>.</p>
+    <p><b>URLTeam 2</b> The Terror of Tiny Town</p>
     """ % (TRACKER_HOST)
 )
 
