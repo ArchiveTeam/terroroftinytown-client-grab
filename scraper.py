@@ -47,12 +47,12 @@ def try_with_tracker(func, *args, **kwargs):
         try:
             return func(*args, **kwargs)
         except TrackerError as error:
-            sleep_time = 60 * try_count
+            sleep_time = 10 * try_count
             print('Error communicating with tracker: {0}.'.format(error))
             print('Trying again in {0} seconds.'.format(sleep_time))
             time.sleep(sleep_time)
 
-            if try_count > 10:
+            if try_count > 5:
                 raise
 
 

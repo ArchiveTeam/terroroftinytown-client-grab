@@ -17,7 +17,7 @@ if StrictVersion(seesaw.__version__) < StrictVersion("0.3.1"):
 # This version covers only pipeline.py and scraper.py.
 # It is known as the pipeline version. Do not confuse it with the
 # version in the library
-VERSION = '1'
+VERSION = '2'
 TRACKER_HOST = 'tracker.archiveteam.org:1337'
 USER_AGENT = ("ArchiveTeam Warrior/%s (%s %s; pipeline %s)" % (
               seesaw.__version__,
