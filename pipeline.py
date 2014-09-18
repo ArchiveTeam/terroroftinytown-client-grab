@@ -17,8 +17,8 @@ if StrictVersion(seesaw.__version__) < StrictVersion("0.3.1"):
 # This version covers only pipeline.py and scraper.py.
 # It is known as the pipeline version. Do not confuse it with the
 # version in the library
-VERSION = '2'
 TRACKER_HOST = 'tracker.archiveteam.org:1337'
+VERSION = '3'
 USER_AGENT = ("ArchiveTeam Warrior/%s (%s %s; pipeline %s)" % (
               seesaw.__version__,
               seesaw.runner_type,
@@ -80,8 +80,8 @@ class UpdateSubmodule(ExternalProcess):
     OLD_ARGS = ['git', 'submodule', 'update', '--init', '--recursive']
 
     def __init__(self):
-        ExternalProcess.__init__(self, 'UpdateSubmoule', self.NEW_ARGS,
-                                 max_tries=2)
+        ExternalProcess.__init__(self, 'UpdateSubmodule', self.NEW_ARGS,
+                                 max_tries=5, retry_delay=2)
 
     def handle_process_error(self, exit_code, item):
         self.args = self.OLD_ARGS
