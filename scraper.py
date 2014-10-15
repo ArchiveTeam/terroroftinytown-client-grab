@@ -2,6 +2,7 @@ import itertools
 import logging
 import sys
 import time
+import traceback
 
 from terroroftinytown.client.scraper import Scraper
 from terroroftinytown.client.tracker import TrackerClient, TrackerError
@@ -34,7 +35,15 @@ def main():
         item_info['project'], todo_list
     )
 
-    result = scraper_client.run()
+    try:
+        result = scraper_client.run()
+    except Exception:
+        try_with_tracker(tracker_client.report_error,
+                         item_info['id'],
+                         item_info['tamper_key'],
+                         str(traceback.format_exc())
+                         )
+        raise
 
     try_with_tracker(tracker_client.upload_item,
                      item_info['id'],
