@@ -52,7 +52,7 @@ def main():
 
 
 def try_with_tracker(func, *args, **kwargs):
-    for try_count in itertools.count():
+    for try_count in itertools.count(1):
         try:
             return func(*args, **kwargs)
         except TrackerError as error:
