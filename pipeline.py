@@ -18,7 +18,7 @@ if StrictVersion(seesaw.__version__) < StrictVersion("0.3.1"):
 # It is known as the pipeline version. Do not confuse it with the
 # version in the library
 TRACKER_HOST = 'tracker.archiveteam.org:1337'
-VERSION = '4'
+VERSION = '5'
 USER_AGENT = ("ArchiveTeam Warrior/%s (%s %s; pipeline %s)" % (
               seesaw.__version__,
               seesaw.runner_type,
