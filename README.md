@@ -44,7 +44,7 @@ so that pip and seesaw are installed in your home, then run
 
     ~/.local/bin/run-pipeline pipeline.py --concurrent 2 YOURNICKHERE
 
-**Note**: The code is self-updating by default. Use `--context-value no_submodule=1` if you do not want this behavior.
+**Note**: The code is partially self-updating by default with Git version 1.8.2 or higher. Use `--context-value no_submodule=1` if you do not want this behavior. Conversely, if you want full updating, use the `--auto-update` feature available in Seesaw 0.8 or higher.
 
 
 Running multiple instances on different IPs
