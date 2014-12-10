@@ -26,6 +26,8 @@ def main():
     )
 
     print('Getting item from tracker.')
+    sys.stdout.flush()
+
     item_info = try_with_tracker(tracker_client.get_item)
 
     todo_list = range(item_info['lower_sequence_num'],
@@ -57,8 +59,11 @@ def try_with_tracker(func, *args, **kwargs):
             return func(*args, **kwargs)
         except TrackerError as error:
             sleep_time = 10 * try_count
+
             print('Error communicating with tracker: {0}.'.format(error))
             print('Trying again in {0} seconds.'.format(sleep_time))
+            sys.stdout.flush()
+
             time.sleep(sleep_time)
 
             if try_count > 5:
