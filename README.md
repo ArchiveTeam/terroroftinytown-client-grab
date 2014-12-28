@@ -54,7 +54,7 @@ This feature requires seesaw version 0.0.16 or greater. Use `pip install --upgra
 
 Use the `--context-value` argument to pass in `bind_address=123.4.5.6` (replace the IP address with your own).
 
-Example of running 2 threads, no web interface, and Wget binding of IP address:
+Example of running 2 threads, no web interface, and binding of IP address:
 
     run-pipeline pipeline.py --concurrent 2 YOURNICKHERE --disable-web-server --context-value bind_address=123.4.5.6
 
@@ -69,7 +69,6 @@ Distribution-specific setup
     screen su -c "cd /home/archiveteam/terroroftinytown-client-grab/; run-pipeline pipeline.py --concurrent 2 --address '127.0.0.1' YOURNICKHERE" archiveteam
     [... ctrl+A D to detach ...]
 
-Wget-lua is also available on [ArchiveTeam's PPA](https://launchpad.net/~archiveteam/+archive/wget-lua) for Ubuntu.
 
 ### For CentOS:
 
