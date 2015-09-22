@@ -18,8 +18,8 @@ if StrictVersion(seesaw.__version__) < StrictVersion("0.3.1"):
 # It is known as the pipeline version. Do not confuse it with the
 # version in the library
 # Bump it whenever a non-cosmetic change is made
-VERSION = '6'
 TRACKER_HOST = 'tracker.archiveteam.org:1337'
+VERSION = '7'
 USER_AGENT = ("ArchiveTeam Warrior/%s (%s %s; pipeline %s)" % (
               seesaw.__version__,
               seesaw.runner_type,
@@ -86,6 +86,8 @@ class UpdateSubmodule(ExternalProcess):
 
     def handle_process_error(self, exit_code, item):
         self.args = self.OLD_ARGS
+        item.log_output('Submodule could not be automatically updated.')
+        item.log_output('* It is safe to ignore the following error. *')
         ExternalProcess.handle_process_error(self, exit_code, item)
 
 
