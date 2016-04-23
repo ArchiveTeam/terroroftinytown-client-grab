@@ -19,7 +19,7 @@ if StrictVersion(seesaw.__version__) < StrictVersion("0.3.1"):
 # version in the library
 # Bump it whenever a non-cosmetic change is made
 TRACKER_HOST = 'tracker.archiveteam.org:1337'
-VERSION = '7'
+VERSION = '8'
 USER_AGENT = ("ArchiveTeam Warrior/%s (%s %s; pipeline %s)" % (
               seesaw.__version__,
               seesaw.runner_type,
