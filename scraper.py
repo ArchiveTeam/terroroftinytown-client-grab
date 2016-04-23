@@ -1,3 +1,4 @@
+import random
 import itertools
 import logging
 import sys
@@ -59,6 +60,7 @@ def try_with_tracker(func, *args, **kwargs):
             return func(*args, **kwargs)
         except TrackerError as error:
             sleep_time = 10 * try_count
+            sleep_time += random.randint(0, 90)
 
             print('Error communicating with tracker: {0}.'.format(error))
             print('Trying again in {0} seconds.'.format(sleep_time))
