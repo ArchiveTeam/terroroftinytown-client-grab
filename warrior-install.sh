@@ -1,4 +1,8 @@
 #!/bin/bash
+
+echo pip is at `which pip`
+echo pip3 is at `which pip3`
+
 #if ! dpkg-query -Wf'${Status}' python-lxml 2>/dev/null | grep -q '^i'
 #then
 #  echo "Installing python-lxml"
@@ -19,6 +23,15 @@ if ! sudo pip freeze | grep -q requests
 then
   echo "Installing Requests"
   if ! sudo pip install requests
+  then
+    exit 1
+  fi
+fi
+
+if pip3 --version && ! sudo pip3 freeze | grep -q requests
+then
+  echo "Installing Requests (Python 3)"
+  if ! sudo pip3 install requests
   then
     exit 1
   fi
