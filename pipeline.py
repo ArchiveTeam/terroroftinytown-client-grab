@@ -111,14 +111,14 @@ project = Project(
     title="URLTeam 2",
     project_html="""
     <img class="project-logo" alt=""
-        src="http://archiveteam.org/images/9/9d/Urlteam-logo-reasonable-size.png"
+        src="https://www.archiveteam.org/images/9/9d/Urlteam-logo-reasonable-size.png"
         height="50"
     title="url shortening was a fucking awful idea" />
     <h2>URLTeam 2
         <span class="links">
             <a href="http://urlte.am/">Website</a> &middot;
             <a href="http://%s/">Leaderboard</a> &middot;
-            <a href="http://archiveteam.org/index.php?title=URLTeam">Wiki</a>
+            <a href="https://www.archiveteam.org/index.php?title=URLTeam">Wiki</a>
         </span>
     </h2>
     <p>The Terror of Tiny Town</p>
