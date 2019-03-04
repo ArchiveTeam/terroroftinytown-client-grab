@@ -18,8 +18,14 @@ if StrictVersion(seesaw.__version__) < StrictVersion("0.3.1"):
 # It is known as the pipeline version. Do not confuse it with the
 # version in the library
 # Bump it whenever a non-cosmetic change is made
-TRACKER_HOST = 'tracker.archiveteam.org:1337'
-VERSION = '8'
+VERSION = '9'
+USE_SSL = True
+
+if USE_SSL:
+    TRACKER_HOST = 'tracker.archiveteam.org:1338'
+else:
+    TRACKER_HOST = 'tracker.archiveteam.org:1337'
+
 USER_AGENT = ("ArchiveTeam Warrior/%s (%s %s; pipeline %s)" % (
               seesaw.__version__,
               seesaw.runner_type,
@@ -27,6 +33,8 @@ USER_AGENT = ("ArchiveTeam Warrior/%s (%s %s; pipeline %s)" % (
               VERSION,
               )
               ).strip()
+
+SCHEME = 'https' if USE_SSL else 'http'
 
 
 class CheckIP(SimpleTask):
@@ -101,7 +109,7 @@ class RunScraper(ExternalProcess):
             [
                 sys.executable, 'scraper.py', TRACKER_HOST, VERSION,
                 globals()['downloader'], globals().get('bind_address', ''),
-                USER_AGENT
+                USER_AGENT, SCHEME
             ],
             env=env
         )

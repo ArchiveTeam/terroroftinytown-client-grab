@@ -17,6 +17,7 @@ def main():
     username = sys.argv[3]
     bind_address = sys.argv[4]
     user_agent = sys.argv[5]
+    scheme = sys.argv[6]
 
     tracker_client = TrackerClient(
         tracker_host,
@@ -24,6 +25,7 @@ def main():
         version=client_version,
         bind_address=bind_address,
         user_agent=user_agent,
+        scheme=scheme,
     )
 
     print('Getting item from tracker.')
