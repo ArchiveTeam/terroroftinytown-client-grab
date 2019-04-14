@@ -125,12 +125,12 @@ project = Project(
     <h2>URLTeam 2
         <span class="links">
             <a href="http://urlte.am/">Website</a> &middot;
-            <a href="http://%s/">Leaderboard</a> &middot;
+            <a href="%s://%s/">Leaderboard</a> &middot;
             <a href="https://www.archiveteam.org/index.php?title=URLTeam">Wiki</a>
         </span>
     </h2>
     <p>The Terror of Tiny Town</p>
-    """ % (TRACKER_HOST)
+    """ % (SCHEME, TRACKER_HOST)
 )
 
 
