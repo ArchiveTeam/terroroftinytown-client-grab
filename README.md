@@ -19,7 +19,7 @@ In most of the below cases, there will be a web interface running at http://loca
 
 **If anything goes wrong while running the commands below, please scroll down to the bottom of this page. There's troubleshooting information there.**
 
-unning with docker
+Running with docker
 --------------------
 
 <img alt="Docker logo" src="https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_%28container_engine%29_logo.png" height="100px">
