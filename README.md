@@ -11,11 +11,54 @@ See [terroroftinytown](https://github.com/ArchiveTeam/terroroftinytown) for sour
 Setup instructions
 =========================
 
+There are now several ways to run this; the preffered method is via the included Dockerfile.
+
 Be sure to replace `YOURNICKHERE` with the nickname that you want to be shown as, on the tracker. You don't need to register it, just pick a nickname you like.
 
 In most of the below cases, there will be a web interface running at http://localhost:8001/. If you don't know or care what this is, you can just ignore it—otherwise, it gives you a fancy view of what's going on.
 
 **If anything goes wrong while running the commands below, please scroll down to the bottom of this page. There's troubleshooting information there.**
+
+unning with docker
+--------------------
+
+<img alt="Docker logo" src="https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_%28container_engine%29_logo.png" height="100px">
+
+Assuming this is a stand alone box, not part of a swarm etc, basic instructions for configuring your docker instance can be found at [docker documentation](https://docs.docker.com/install/) or for [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/) / [Debian](https://docs.docker.com/install/linux/docker-ce/debian/).
+
+Make a directory, cd into the directry and copy the included dockerfile into it; the rest of the files are not required. Edit the final line to include the concurrency and replace `YOURNICK` with your username.
+
+Build the container with the following arguments;
+
+    docker build -t <<dockername>> <<foldername>>/
+
+for example
+
+    docker build -t at-terroroftinytown archiveteam-terroroftinytown/
+    
+Then simply run the container with either;
+
+    docker run -d -it at-terroroftinytown
+
+or if you want to give it a known name and make it easier to run commands;
+
+    docker run -d -it --name at-terroroftinytown at-terroroftinytown
+
+or if you really want that web page to be available;
+
+    docker run -d -it -p 8001:8001 --name at-terroroftinytown at-terroroftinytown
+
+Stopping the container (clean);
+
+    docker run -d -it --name <<containername>> touch STOP
+
+Stopping the container (hard);
+
+    docker stop <<containername>>
+
+Connecting to the container console;
+
+    docker attach <<containername>>
 
 Running with a warrior
 -------------------------
