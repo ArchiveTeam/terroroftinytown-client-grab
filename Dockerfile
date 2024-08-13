@@ -1,4 +1,4 @@
-FROM python:3-alpine
+FROM python:3.8-alpine
 WORKDIR /grab
 COPY . /grab
 ENV LC_ALL=C.UTF-8
