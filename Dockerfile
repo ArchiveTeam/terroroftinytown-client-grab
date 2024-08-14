@@ -1,4 +1,11 @@
 FROM python:3.8-alpine
+
+RUN apk update
+
+RUN apk add --no-cache git
+
+RUN pip install --upgrade seesaw requests
+
 WORKDIR /grab
 COPY . /grab
 
